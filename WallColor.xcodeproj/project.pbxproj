@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58630CE81E6601810070EE01 /* oie_png.png in Resources */ = {isa = PBXBuildFile; fileRef = 58630CE71E6601810070EE01 /* oie_png.png */; };
 		5893B46F1E608C4700C5AF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5893B46E1E608C4700C5AF3B /* AppDelegate.swift */; };
 		5893B4711E608C4700C5AF3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5893B4701E608C4700C5AF3B /* ViewController.swift */; };
 		5893B4741E608C4700C5AF3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5893B4721E608C4700C5AF3B /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		5893B4791E608C4700C5AF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5893B4771E608C4700C5AF3B /* LaunchScreen.storyboard */; };
 		5893B4841E608C4700C5AF3B /* WallColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5893B4831E608C4700C5AF3B /* WallColorTests.swift */; };
 		5893B48F1E608C4700C5AF3B /* WallColorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5893B48E1E608C4700C5AF3B /* WallColorUITests.swift */; };
+		58E723411E6D9C5600A413B2 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E723401E6D9C5600A413B2 /* ImageDisplayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58630CE71E6601810070EE01 /* oie_png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oie_png.png; sourceTree = "<group>"; };
 		5893B46B1E608C4700C5AF3B /* WallColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5893B46E1E608C4700C5AF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5893B4701E608C4700C5AF3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		5893B48A1E608C4700C5AF3B /* WallColorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallColorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5893B48E1E608C4700C5AF3B /* WallColorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallColorUITests.swift; sourceTree = "<group>"; };
 		5893B4901E608C4700C5AF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58E723401E6D9C5600A413B2 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +101,10 @@
 		5893B46D1E608C4700C5AF3B /* WallColor */ = {
 			isa = PBXGroup;
 			children = (
+				58630CE71E6601810070EE01 /* oie_png.png */,
 				5893B46E1E608C4700C5AF3B /* AppDelegate.swift */,
 				5893B4701E608C4700C5AF3B /* ViewController.swift */,
+				58E723401E6D9C5600A413B2 /* ImageDisplayViewController.swift */,
 				5893B4721E608C4700C5AF3B /* Main.storyboard */,
 				5893B4751E608C4700C5AF3B /* Assets.xcassets */,
 				5893B4771E608C4700C5AF3B /* LaunchScreen.storyboard */,
@@ -193,6 +199,7 @@
 				TargetAttributes = {
 					5893B46A1E608C4700C5AF3B = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7LKSMJNK38;
 						ProvisioningStyle = Automatic;
 					};
 					5893B47E1E608C4700C5AF3B = {
@@ -235,6 +242,7 @@
 				5893B4791E608C4700C5AF3B /* LaunchScreen.storyboard in Resources */,
 				5893B4761E608C4700C5AF3B /* Assets.xcassets in Resources */,
 				5893B4741E608C4700C5AF3B /* Main.storyboard in Resources */,
+				58630CE81E6601810070EE01 /* oie_png.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E723411E6D9C5600A413B2 /* ImageDisplayViewController.swift in Sources */,
 				5893B4711E608C4700C5AF3B /* ViewController.swift in Sources */,
 				5893B46F1E608C4700C5AF3B /* AppDelegate.swift in Sources */,
 			);
@@ -412,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7LKSMJNK38;
 				INFOPLIST_FILE = WallColor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SSFS.WallColor;
@@ -424,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7LKSMJNK38;
 				INFOPLIST_FILE = WallColor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SSFS.WallColor;
@@ -505,6 +516,7 @@
 				5893B4951E608C4700C5AF3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5893B4961E608C4700C5AF3B /* Build configuration list for PBXNativeTarget "WallColorTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +525,7 @@
 				5893B4981E608C4700C5AF3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5893B4991E608C4700C5AF3B /* Build configuration list for PBXNativeTarget "WallColorUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +534,7 @@
 				5893B49B1E608C4700C5AF3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
