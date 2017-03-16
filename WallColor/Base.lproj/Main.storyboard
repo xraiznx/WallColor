@@ -43,6 +43,17 @@
                                     <action selector="UseExisting:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rAZ-Sw-GWw"/>
                                 </connections>
                             </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hv9-DF-kd1">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Next" id="Cm4-ow-YEg">
+                                        <connections>
+                                            <action selector="NextScreen:" destination="BYZ-38-t0r" id="NUa-Ox-aaq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -90,7 +101,6 @@
                     </view>
                     <connections>
                         <outlet property="DisplayImage" destination="1St-8L-fQS" id="rDc-HM-GGQ"/>
-                        <outlet property="images" destination="1St-8L-fQS" id="4wq-R4-3yU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOp-lA-baL" userLabel="First Responder" sceneMemberID="firstResponder"/>

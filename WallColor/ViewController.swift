@@ -12,28 +12,31 @@ class ViewController: UIViewController,
     UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
     
-    var tempImage:UIImage?
+    var tempImage: UIImage?
     
-    @IBOutlet weak var ImageView: UIImageView!
+    @IBOutlet weak var ImageView: UIImageView! // Outlet for image to be displayed
     let picker = UIImagePickerController()
     
-    @IBAction func TakePicture(_ sender: UIButton) {
+    @IBAction func NextScreen(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "DisplayImage", sender: nil)
+
+    }
+    @IBAction func TakePicture(_ sender: UIButton) { // When take picture button is pressed
     picker.allowsEditing = false
     picker.sourceType = UIImagePickerControllerSourceType.camera
     picker.cameraCaptureMode = .photo
     picker.modalPresentationStyle = .fullScreen
     present(picker,animated: true,completion: nil)
     }
-    @IBAction func UseExisting(_ sender: UIButton) {
+    @IBAction func UseExisting(_ sender: UIButton) { // When use existing button is pressed
     picker.allowsEditing = false
     picker.sourceType = .photoLibrary
     present(picker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-            dismiss(animated:true, completion: nil)
-        performSegue(withIdentifier: "DisplayImage", sender: self)
-
+        ImageView.image = tempImage
+        dismiss(animated:true, completion: nil)
         
     }
     
