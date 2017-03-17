@@ -44,7 +44,7 @@ UINavigationControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DisplayImage"{
         let controller = segue.destination as! ImageDisplayViewController
             controller.image = tempImage!
