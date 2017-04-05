@@ -35,7 +35,7 @@ UINavigationControllerDelegate {
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        ImageView.image = tempImage
+        performSegue(withIdentifier: "DisplayImage", sender: nil)
         dismiss(animated:true, completion: nil)
         
     }
