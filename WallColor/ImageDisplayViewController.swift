@@ -39,7 +39,6 @@ class ImageDisplayViewController: UIViewController {
     var ycord: Int = 0
     
     
-    @IBOutlet weak var imagecontrol: UIView!
     @IBOutlet weak var DisplayImage: UIImageView!
     
     @IBOutlet weak var SolidColor: UIImageView!
@@ -50,11 +49,14 @@ class ImageDisplayViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            let position = touch.location(in: DisplayImage)
-            xcord = Int(position.x)
-            ycord = Int(position.y)
-            print(position.x)
-            print(position.y)
+            var touchPoint = touch.location(in: self.DisplayImage)
+            
+            touchPoint.x = touchPoint.x *  (DisplayImage.image?.size.width)! / DisplayImage.frame.width
+            touchPoint.y = touchPoint.y *  (DisplayImage.image?.size.height)! / DisplayImage.frame.height
+            
+            print("Touched point (\(touchPoint.x), \(touchPoint.y)")
+            xcord = Int(touchPoint.x)
+            ycord = Int(touchPoint.y)
             if let pixelcolor = image?[xcord, ycord] {
                 var redcol: CGFloat = 0.0
                 var greencol: CGFloat = 0.0
@@ -70,36 +72,13 @@ class ImageDisplayViewController: UIViewController {
                 SolidColor.backgroundColor = UIColor(red: redcol, green: greencol, blue: bluecol, alpha: 1)
                 print (Int(Float(alphacol)))
                 print (pixelcolor)
+                let hexValue = String(format:"%02X", Int(redrgb)!) + String(format:"%02X", Int(greenrgb)!) + String(format:"%02X", Int(bluergb)!)
+                HexValue.text = hexValue
                 
                 }
         }
     }
-    
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
-        
-        let widthRatio  = targetSize.width  / image.size.width
-        let heightRatio = targetSize.height / image.size.height
-        
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
-        }
-        
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.resizeImage(UIImage()!, targetSize: CGSizeMake(200.0, 200.0))

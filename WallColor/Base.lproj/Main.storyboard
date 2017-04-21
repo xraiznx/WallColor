@@ -76,7 +76,6 @@
         <!--Image Display View Controller-->
         <scene sceneID="PQi-87-UNX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oOp-lA-baL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Aoo-Dt-T0l" customClass="ImageDisplayViewController" customModule="WallColor" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iOW-qF-fug"/>
@@ -125,7 +124,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1St-8L-fQS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1St-8L-fQS">
                                 <rect key="frame" x="0.0" y="101" width="375" height="522"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -149,6 +148,7 @@
                         <outlet property="SolidColor" destination="1DS-So-bUt" id="pgc-dB-GEO"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oOp-lA-baL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="120.8" y="871.21439280359823"/>
         </scene>
