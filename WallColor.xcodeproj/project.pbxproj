@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5813BD591EAA422A00604498 /* CompatibleColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813BD581EAA422A00604498 /* CompatibleColorController.swift */; };
 		58630CE81E6601810070EE01 /* oie_png.png in Resources */ = {isa = PBXBuildFile; fileRef = 58630CE71E6601810070EE01 /* oie_png.png */; };
 		5893B46F1E608C4700C5AF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5893B46E1E608C4700C5AF3B /* AppDelegate.swift */; };
 		5893B4711E608C4700C5AF3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5893B4701E608C4700C5AF3B /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5813BD581EAA422A00604498 /* CompatibleColorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleColorController.swift; sourceTree = "<group>"; };
 		58630CE71E6601810070EE01 /* oie_png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oie_png.png; sourceTree = "<group>"; };
 		5893B46B1E608C4700C5AF3B /* WallColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5893B46E1E608C4700C5AF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				5893B4701E608C4700C5AF3B /* ViewController.swift */,
 				58E723401E6D9C5600A413B2 /* ImageDisplayViewController.swift */,
 				5893B4721E608C4700C5AF3B /* Main.storyboard */,
+				5813BD581EAA422A00604498 /* CompatibleColorController.swift */,
 				5893B4751E608C4700C5AF3B /* Assets.xcassets */,
 				5893B4771E608C4700C5AF3B /* LaunchScreen.storyboard */,
 				5893B47A1E608C4700C5AF3B /* Info.plist */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58E723411E6D9C5600A413B2 /* ImageDisplayViewController.swift in Sources */,
+				5813BD591EAA422A00604498 /* CompatibleColorController.swift in Sources */,
 				5893B4711E608C4700C5AF3B /* ViewController.swift in Sources */,
 				5893B46F1E608C4700C5AF3B /* AppDelegate.swift in Sources */,
 			);
