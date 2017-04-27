@@ -149,6 +149,7 @@ class ImageDisplayViewController: UIViewController {
         actualhue = h
         actualsaturation = s
         actualvalue = v
+        print (hue, saturation, value)
         
     }
     override func viewDidLoad() {
