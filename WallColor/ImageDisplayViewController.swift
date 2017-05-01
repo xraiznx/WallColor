@@ -34,48 +34,46 @@ extension UIImage {
 
 class ImageDisplayViewController: UIViewController {
 
-    var image: UIImage?
-    var xcord: Int = 0
-    var ycord: Int = 0
-    var rgbvaluestring: String?
-    var hexvaluestring: String?
-    var redcol: CGFloat = 0.0
-    var greencol: CGFloat = 0.0
-    var bluecol: CGFloat = 0.0
-    var alphacol: CGFloat = 0.0
-    var fredcol: Float = 0.0
-    var fgreencol: Float = 0.0
-    var fbluecol: Float = 0.0
-    var falphacol: Float = 0.0
-    var actualhue: Float?
-    var actualsaturation: Float?
-    var actualvalue: Float?
-    var hue: Int?
-    var saturation: Int?
-    var value: Int?
+    var image: UIImage? // Main image variable
+    var xcord: Int = 0 // X-Coordinate
+    var ycord: Int = 0 // Y-Coordinate
+    var rgbvaluestring: String? // String that holds rgb value
+    var hexvaluestring: String? // String that holds hex value
+    var redcol: CGFloat = 0.0 // Holds red value
+    var greencol: CGFloat = 0.0 // Holds green value
+    var bluecol: CGFloat = 0.0 // Holds blue value
+    var alphacol: CGFloat = 0.0 // Holds alpha value
+    var fredcol: Float = 0.0 // Holds red value * 255
+    var fgreencol: Float = 0.0 // Holds green value * 255
+    var fbluecol: Float = 0.0 // Holds blue value * 255
+    var falphacol: Float = 0.0 // Holds alpha value
+    var actualhue: Float? // Holds actual hue
+    var actualsaturation: Float? // Holds actual saturation
+    var actualvalue: Float? // Holds actual value
+    var hue: Int? // Holds hue * 60
+    var saturation: Int? // Holds saturation * 100
+    var value: Int? // Holds value * 100
     
-
-    @IBOutlet weak var DisplayImage: UIImageView!
+    @IBOutlet weak var DisplayImage: UIImageView! // Image view of main image
+    @IBOutlet weak var SolidColor: UIImageView! // Image view of solid color
+    @IBOutlet weak var HexValue: UILabel! // Label holds hexvalue
+    @IBOutlet weak var RGBValue: UILabel! // Label holds rgbvalue
     
-    @IBOutlet weak var SolidColor: UIImageView!
-    @IBOutlet weak var HexValue: UILabel!
-    @IBOutlet weak var RGBValue: UILabel!
     @IBAction func NextScreen(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "SolidColor", sender: nil)
     }
     
-    
-    
+    // Function that starts when screen is touched
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            var touchPoint = touch.location(in: self.DisplayImage)
+            var touchPoint = touch.location(in: self.DisplayImage) // Saves location of touch
             
-            touchPoint.x = touchPoint.x *  (DisplayImage.image?.size.width)! / DisplayImage.frame.width
-            touchPoint.y = touchPoint.y *  (DisplayImage.image?.size.height)! / DisplayImage.frame.height
+            touchPoint.x = touchPoint.x *  (DisplayImage.image?.size.width)! / DisplayImage.frame.width // Finds x value proportionate to image and display size
+            touchPoint.y = touchPoint.y *  (DisplayImage.image?.size.height)! / DisplayImage.frame.height // Finds y value proportionate to image and display size
             
-
-            xcord = Int(touchPoint.x)
-            ycord = Int(touchPoint.y)
+            xcord = Int(touchPoint.x) // Sets X-Coordinate to int of x value
+            ycord = Int(touchPoint.y) // Sets Y-Coordinate to int of y value
+            
             if let pixelcolor = image?[xcord, ycord] {
                 redcol = 0.0
                 greencol = 0.0
@@ -113,9 +111,9 @@ class ImageDisplayViewController: UIViewController {
             controller.hexvaluestring = hexvaluestring
             controller.rgbvaluestring = rgbvaluestring
             controller.previmage = image
-            controller.hue = hue
-            controller.saturation = saturation
-            controller.value = value
+            controller.hue = hue!
+            controller.saturation = saturation!
+            controller.value = value!
             controller.actualhue = CGFloat(actualhue!)
             controller.actualsaturation = CGFloat(actualsaturation!)
             controller.actualvalue = CGFloat(actualvalue!)

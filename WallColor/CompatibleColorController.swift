@@ -22,8 +22,8 @@ class CompatibleColorController: UIViewController {
     var tempactualhue: CGFloat?
     var tempactualsaturation: CGFloat?
     var tempactualvalue: CGFloat?
-    var actualcompatiblecolors : [String: Float] = ["r1": 0, "g1": 0, "b1": 0,"a1": 0, "h1": 0, "s1": 0, "v1": 0,"r2": 0, "g2": 0, "b2": 0,"a2": 0, "h2": 0, "s2": 0, "v2": 0,"r3": 0, "g3": 0, "b3": 0,"a3": 0, "h3": 0, "s3": 0, "v3": 0,"r4": 0, "g4": 0, "b4": 0,"a4": 0, "h4": 0, "s4": 0, "v4": 0,"r5": 0, "g5": 0, "b5": 0,"a5": 0, "h5": 0, "s5": 0, "v5": 0,"r6": 0, "g6": 0, "b6": 0,"a6": 0, "h6": 0, "s6": 0, "v6": 0]
-     var compatiblecolors : [String: Int] = ["r1": 0, "g1": 0, "b1": 0,"a1": 0, "h1": 0, "s1": 0, "v1": 0,"r2": 0, "g2": 0, "b2": 0,"a2": 0, "h2": 0, "s2": 0, "v2": 0,"r3": 0, "g3": 0, "b3": 0,"a3": 0, "h3": 0, "s3": 0, "v3": 0,"r4": 0, "g4": 0, "b4": 0,"a4": 0, "h4": 0, "s4": 0, "v4": 0,"r5": 0, "g5": 0, "b5": 0,"a5": 0, "h5": 0, "s5": 0, "v5": 0,"r6": 0, "g6": 0, "b6": 0,"a6": 0, "h6": 0, "s6": 0, "v6": 0]
+    var actualcompatiblecolors : [String: Float] = [:]
+    var compatiblecolors : [String: Int] = [:]
     @IBOutlet weak var SolidColor: UIImageView!
     @IBOutlet weak var HexValue: UILabel!
     @IBOutlet weak var RGBValue: UILabel!
@@ -43,46 +43,24 @@ class CompatibleColorController: UIViewController {
             imagedisplay.image = previmage
         }
     }
-    func colorchanger(block: Int){}
-    func hsltorgb(block: Int){
+    func colorchanger(block: Int) // Changes hue to get compatible colors
+    {
+        if (block == 1) {compatiblecolors["h1"] = compatiblecolors["h1"]! + 180} // Complimentary Color
+        if (block == 2) {compatiblecolors["h2"] = compatiblecolors["h2"]! + 120} // Color triad
+        if (block == 3) {compatiblecolors["h3"] = compatiblecolors["h3"]! - 120} // Color triad
+        if (block == 4) {compatiblecolors["h4"] = compatiblecolors["h4"]! - 30} // Adjacent Color
+        if (block == 5) {compatiblecolors["h5"] = compatiblecolors["h5"]! + 30} // Adjacent Color
+        if (block == 6) {compatiblecolors["h6"] = compatiblecolors["h6"]! + 150} // Split Complementary}
+    }
+    func hsvtorgb(block: Int) // Converts HSV ro RGB
+    {
         var r = Float(0)
         var g = Float(0)
         var b = Float(0)
-//        var h = Float(actualhue!)
-//        var s = Float(actualsaturation!)
-//        var v = Float(actualvalue!)
-//        let i = Int(actualhue! * 6)
-//        print (i)
-//        var f = (h * 6) - i
-//        let s: CGFloat = actualsaturation!
-//        let v: CGFloat = actualvalue!
-//        let c = Float(v * s)
-//        let x = c * (1 - abs((h.truncatingRemainder(dividingBy: 2) - 1)))
-//        if (h == 0) { r = 0; g = 0; b = 0 }
-//        if ((0 <= h) && (h < 1)) { r = CGFloat(c); g = CGFloat(x); b = 0 }
-//        if ((1 <= h) && (h < 2)) { r = CGFloat(x); g = CGFloat(c); b = 0 }
-//        if ((2 <= h) && (h < 3)) { r = 0; g = CGFloat(c); b = CGFloat(x) }
-//        if ((3 <= h) && (h < 4)) { r = 0; g = CGFloat(x); b = CGFloat(c) }
-//        if ((4 <= h) && (h < 5)) { r = CGFloat(x); g = 0; b = CGFloat(c) }
-//        if ((5 <= h) && (h < 6)) { r = CGFloat(c); g = CGFloat(x); b = 0 }
-//        let m = CGFloat(v - CGFloat(c))
-//        if (s == 0) {r = CGFloat(v); g = CGFloat(v); b = CGFloat(v)}
-//        var i = Int(h*6)
-//        let f = (h*6) - Float(i)
-//        let p = v * (1.0 - s)
-//        var q = v * (1.0 - (s * f))
-//        var t = v * (1.0 - (s * (1.0 - f)))
-//        i = i % 6
-//        if (i == 0) { r = CGFloat(v); g = CGFloat(t); b = CGFloat(p) }
-//        if (i == 1) { r = CGFloat(q); g = CGFloat(v); b = CGFloat(p) }
-//        if (i == 2) { r = CGFloat(p); g = CGFloat(v); b = CGFloat(t) }
-//        if (i == 3) { r = CGFloat(p); g = CGFloat(q); b = CGFloat(v) }
-//        if (i == 4) { r = CGFloat(t); g = CGFloat(p); b = CGFloat(v) }
-//        if (i == 5) { r = CGFloat(v); g = CGFloat(p); b = CGFloat(q) }
         
-        let h = Float(hue!) // Angle in degrees [0,360] or -1 as Undefined
-        let s = Float(actualsaturation!) // Percent [0,1]
-        let v = Float(actualvalue!)// Percent [0,1]
+        let h = Float(compatiblecolors["h" + String(block)]!) // Angle in degrees [0,360] or -1 as Undefined
+        let s = Float(actualcompatiblecolors["s" + String(block)]!) // Percent [0,1]
+        let v = Float(actualcompatiblecolors["v" + String(block)]!)// Percent [0,1]
         if (s == 0) {r = v; g = v; b = v}
 
         let angle = (h >= 360 ? 0 : h)
@@ -122,27 +100,35 @@ class CompatibleColorController: UIViewController {
                     b = q
             }
         
-        actualcompatiblecolors["r" + String(block)] = r
-        actualcompatiblecolors["g" + String(block)] = g
-        actualcompatiblecolors["b" + String(block)] = b
+        actualcompatiblecolors["r" + String(block)] = r // Saves uncalculated red value
+        actualcompatiblecolors["g" + String(block)] = g // Saves uncalculated green value
+        actualcompatiblecolors["b" + String(block)] = b // Saves uncalculated blue value
         actualcompatiblecolors["a" + String(block)] = Float(actualalpha!)
-        print(actualcompatiblecolors["r" + String(block)]! * 255)
-        print(actualcompatiblecolors["g" + String(block)]! * 255)
-        print(actualcompatiblecolors["b" + String(block)]! * 255)
-        print(actualcompatiblecolors["a" + String(block)])
-        print(actualcompatiblecolors["h" + String(block)]! * 60)
-        print(actualcompatiblecolors["s" + String(block)]! * 100)
-        print(actualcompatiblecolors["v" + String(block)]! * 100)
+        compatiblecolors["r" + String(block)] = Int(r * 255)
+        compatiblecolors["g" + String(block)] = Int(g * 255)
+        compatiblecolors["b" + String(block)] = Int(b * 255)
+        compatiblecolors["a" + String(block)] = Int(actualalpha!)
+      
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hsltorgb(block: 1)
-        hsltorgb(block: 2)
-        hsltorgb(block: 3)
-        hsltorgb(block: 4)
-        hsltorgb(block: 5)
-        hsltorgb(block: 6)
+        // Holds RGB and HSV in full Int form
+        compatiblecolors = ["r1": 0, "g1": 0, "b1": 0,"a1": 0, "h1": hue!, "s1": saturation!, "v1":value!,"r2": 0, "g2": 0, "b2": 0,"a2": 0, "h2": hue!, "s2": saturation!, "v2": value!,"r3": 0, "g3": 0, "b3": 0,"a3": 0, "h3": hue!, "s3": saturation!, "v3": value!,"r4": 0, "g4": 0, "b4": 0,"a4": 0, "h4": hue!, "s4": saturation!, "v4": value!,"r5": 0, "g5": 0, "b5": 0,"a5": 0, "h5": hue!, "s5": saturation!, "v5": value!,"r6": 0, "g6": 0, "b6": 0,"a6": 0, "h6": hue!, "s6": saturation!, "v6": value!]
+        // Holds RGB and HSV in uncalculated Float form
+        actualcompatiblecolors = ["r1": 0, "g1": 0, "b1": 0,"a1": 0, "h1": Float(actualhue!), "s1": Float(actualsaturation!), "v1": Float(actualvalue!),"r2": 0, "g2": 0, "b2": 0,"a2": 0, "h2": Float(actualhue!), "s2": Float(actualsaturation!), "v2": Float(actualvalue!),"r3": 0, "g3": 0, "b3": 0,"a3": 0, "h3": Float(actualhue!), "s3": Float(actualsaturation!), "v3": Float(actualvalue!),"r4": 0, "g4": 0, "b4": 0,"a4": 0, "h4": Float(actualhue!), "s4": Float(actualsaturation!), "v4": Float(actualvalue!),"r5": 0, "g5": 0, "b5": 0,"a5": 0, "h5": Float(actualhue!), "s5": Float(actualsaturation!), "v5": Float(actualvalue!),"r6": 0, "g6": 0, "b6": 0,"a6": 0, "h6": Float(actualhue!), "s6": Float(actualsaturation!), "v6": Float(actualvalue!)]
+        colorchanger(block: 1) // Calculates compatible color
+        hsvtorgb(block: 1) // Changes color to rgb
+        colorchanger(block: 2)
+        hsvtorgb(block: 2)
+        colorchanger(block: 3)
+        hsvtorgb(block: 3)
+        colorchanger(block: 3)
+        hsvtorgb(block: 4)
+        colorchanger(block: 5)
+        hsvtorgb(block: 5)
+        colorchanger(block: 6)
+        hsvtorgb(block: 6)
         HexValue.text = hexvaluestring
         RGBValue.text = rgbvaluestring
         SolidColor.backgroundColor = solidcolor
