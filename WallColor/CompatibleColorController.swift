@@ -35,7 +35,7 @@ class CompatibleColorController: UIViewController
     @IBOutlet weak var CompatibleImage5: UIImageView!
     @IBOutlet weak var CompatibleImage6: UIImageView!
     
-    // When back buton is pressed prepare segue
+    // When back buton is pressed perfrom segue
     @IBAction func PreviousView(_ sender: UIBarButtonItem)
     {
         performSegue(withIdentifier: "PassBack", sender: nil)

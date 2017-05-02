@@ -8,13 +8,11 @@
 
 import UIKit
 
-extension UIImage {
-    
-    subscript (x: Int, y: Int) -> UIColor? {
-        
-        if x < 0 || x > Int(size.width) || y < 0 || y > Int(size.height) {
-            return nil
-        }
+extension UIImage
+{
+    subscript (x: Int, y: Int) -> UIColor?
+    {
+        if x < 0 || x > Int(size.width) || y < 0 || y > Int(size.height) { return nil }
         
         let provider = self.cgImage!.dataProvider
         let providerData = provider!.data
@@ -32,7 +30,8 @@ extension UIImage {
     }
 }
 
-class ImageDisplayViewController: UIViewController {
+class ImageDisplayViewController: UIViewController
+{
 
     var image: UIImage? // Main image variable
     var xcord: Int = 0 // X-Coordinate
@@ -43,10 +42,6 @@ class ImageDisplayViewController: UIViewController {
     var greencol: CGFloat = 0.0 // Holds green value
     var bluecol: CGFloat = 0.0 // Holds blue value
     var alphacol: CGFloat = 0.0 // Holds alpha value
-    var fredcol: Float = 0.0 // Holds red value * 255
-    var fgreencol: Float = 0.0 // Holds green value * 255
-    var fbluecol: Float = 0.0 // Holds blue value * 255
-    var falphacol: Float = 0.0 // Holds alpha value
     var actualhue: Float? // Holds actual hue
     var actualsaturation: Float? // Holds actual saturation
     var actualvalue: Float? // Holds actual value
@@ -59,13 +54,16 @@ class ImageDisplayViewController: UIViewController {
     @IBOutlet weak var HexValue: UILabel! // Label holds hexvalue
     @IBOutlet weak var RGBValue: UILabel! // Label holds rgbvalue
     
+    // When next button is pressed, perform segue
     @IBAction func NextScreen(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "SolidColor", sender: nil)
     }
     
     // Function that starts when screen is touched
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if let touch = touches.first
+        {
             var touchPoint = touch.location(in: self.DisplayImage) // Saves location of touch
             
             touchPoint.x = touchPoint.x *  (DisplayImage.image?.size.width)! / DisplayImage.frame.width // Finds x value proportionate to image and display size
@@ -74,39 +72,39 @@ class ImageDisplayViewController: UIViewController {
             xcord = Int(touchPoint.x) // Sets X-Coordinate to int of x value
             ycord = Int(touchPoint.y) // Sets Y-Coordinate to int of y value
             
-            if let pixelcolor = image?[xcord, ycord] {
+            if let pixelcolor = image?[xcord, ycord]
+            {
+                // Default value assignment
                 redcol = 0.0
                 greencol = 0.0
                 bluecol = 0.0
                 alphacol = 0.0
-                fredcol = 0.0
-                fgreencol = 0.0
-                fbluecol = 0.0
-                falphacol = 0.0
-                pixelcolor.getRed(&redcol, green: &greencol, blue: &bluecol, alpha: &alphacol)
-                fredcol = Float(redcol)
-                fgreencol = Float(greencol)
-                fbluecol = Float(bluecol)
-                falphacol = Float(alphacol)
-
                 
-                // Do something with the color
+                // Get RGB values and assign to variables
+                pixelcolor.getRed(&redcol, green: &greencol, blue: &bluecol, alpha: &alphacol)
+
+                // Calculate the RGB ( value * 255 )
                 let redrgb = String((Int(Float(redcol) * 255)))
                 let greenrgb = String((Int(Float(greencol) * 255)))
                 let bluergb = String((Int(Float(bluecol) * 255)))
-                rgbvaluestring = redrgb + "," + greenrgb + "," + bluergb
-                rgb2hsv()
-                RGBValue.text = rgbvaluestring
-                SolidColor.backgroundColor = UIColor(red: redcol, green: greencol, blue: bluecol, alpha: 1)
-                hexvaluestring = String(format:"%02X", Int(redrgb)!) + String(format:"%02X", Int(greenrgb)!) + String(format:"%02X", Int(bluergb)!)
-                HexValue.text = hexvaluestring
                 
-                }
+                rgbvaluestring = redrgb + "," + greenrgb + "," + bluergb // Creates RGB value string
+                RGBValue.text = rgbvaluestring // Sets label to RGB value
+                rgb2hsv() // Converts to HSV
+                SolidColor.backgroundColor = UIColor(red: redcol, green: greencol, blue: bluecol, alpha: 1) // Sets background color of color block equal to RGB value
+                hexvaluestring = String(format:"%02X", Int(redrgb)!) + String(format:"%02X", Int(greenrgb)!) + String(format:"%02X", Int(bluergb)!) // Converts value to HEX in string
+                HexValue.text = hexvaluestring // Sets HEX label to HEX string value
+            }
         }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Solid Color"{
+    // Prepare for segue ( Destination : CompatibleColorController )
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "Solid Color"
+        {
             let controller = segue.destination as! CompatibleColorController
+            
+            // Passes neccesary variables
             controller.solidcolor = SolidColor.backgroundColor!
             controller.hexvaluestring = hexvaluestring
             controller.rgbvaluestring = rgbvaluestring
@@ -121,46 +119,45 @@ class ImageDisplayViewController: UIViewController {
         }
     }
     
-    
-    func rgb2hsv(){
-        let r = fredcol
-        let g = fgreencol
-        let b = fbluecol
-        var h : Float?
-        var s : Float?
-        var v : Float?
-        let rgbmax = max(r,g,b)
-        let rgbmin = min(r,g,b)
+    // Converts RGB value to HSV value
+    func rgb2hsv()
+    {
+        // Initializes neccesary variables
+        let redvalue = Float(redcol)
+        let greenvalue = Float(greencol)
+        let bluevalue = Float(bluecol)
+        var temphue : Float?
+        var tempsaturation : Float?
+        var tempvalue : Float?
+        
+        // RGB to HSV formula
+        let rgbmax = max(redvalue,greenvalue,bluevalue)
+        let rgbmin = min(redvalue,greenvalue,bluevalue)
         let temp = rgbmax - rgbmin
-        v = rgbmax
-        if (rgbmax == r) { h = ((g - b) / temp).truncatingRemainder(dividingBy: 6) }
-        if (rgbmax == g) { h = ((b - r) / temp) + 2 }
-        if (rgbmax == b) { h = ((r - g) / temp) + 4 }
-        if (rgbmax == 0) { s = 0 }
-        if (rgbmax != 0) { s = temp/rgbmax }
+        tempvalue = rgbmax
+        if (rgbmax == redvalue) { temphue = ((greenvalue - bluevalue) / temp).truncatingRemainder(dividingBy: 6) }
+        if (rgbmax == greenvalue) { temphue = ((bluevalue - redvalue) / temp) + 2 }
+        if (rgbmax == bluevalue) { temphue = ((redvalue - greenvalue) / temp) + 4 }
+        if (rgbmax == 0) { tempsaturation = 0 }
+        if (rgbmax != 0) { tempsaturation = temp/rgbmax }
         
-        if (h! < Float(0)) { hue = Int((h! * Float(60)) + Float(180))}
-        else { hue = Int(h! * Float(60))}
+        // Assigns calculated hue
+        if (temphue! < Float(0)) { hue = Int((temphue! * Float(60)) + Float(180))}
+        else { hue = Int(temphue! * Float(60))}
             
-        saturation = Int(s! * Float(100))
-        value = Int(v! * Float(100))
-        actualhue = h
-        actualsaturation = s
-        actualvalue = v
-        print (hue, saturation, value)
-        
+        saturation = Int(tempsaturation! * Float(100)) // Assigns calculated saturation
+        value = Int(tempvalue! * Float(100))  // Assigns calculated value
+        actualhue = temphue // Assigns unalculated hue
+        actualsaturation = tempsaturation // Assigns unalculated saturation
+        actualvalue = tempvalue // Assigns unalculated value
     }
-    override func viewDidLoad() {
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // self.resizeImage(UIImage()!, targetSize: CGSizeMake(200.0, 200.0))
-        DisplayImage.image = image
+        DisplayImage.image = image // Sets UIImage view equal to image
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    override func didReceiveMemoryWarning() {super.didReceiveMemoryWarning()}
 }

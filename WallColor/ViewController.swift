@@ -10,49 +10,57 @@ import UIKit
 
 class ViewController: UIViewController,
     UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
-    
-    var tempImage: UIImage?
+UINavigationControllerDelegate
+{
+    var tempImage: UIImage? // Variable for image
     
     @IBOutlet weak var ImageView: UIImageView! // Outlet for image to be displayed
     let picker = UIImagePickerController()
     
-    @IBAction func NextScreen(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "DisplayImage", sender: nil)
-
+    // When next is pressed perform segue
+    @IBAction func NextScreen(_ sender: UIBarButtonItem) { performSegue(withIdentifier: "DisplayImage", sender: nil) }
+    
+    // When take picture button is pressed
+    @IBAction func TakePicture(_ sender: UIButton)
+    {
+        picker.allowsEditing = false
+        picker.sourceType = UIImagePickerControllerSourceType.camera
+        picker.cameraCaptureMode = .photo
+        picker.modalPresentationStyle = .fullScreen
+        present(picker,animated: true,completion: nil)
     }
-    @IBAction func TakePicture(_ sender: UIButton) { // When take picture button is pressed
-    picker.allowsEditing = false
-    picker.sourceType = UIImagePickerControllerSourceType.camera
-    picker.cameraCaptureMode = .photo
-    picker.modalPresentationStyle = .fullScreen
-    present(picker,animated: true,completion: nil)
+    
+    // When use existing button is pressed
+    @IBAction func UseExisting(_ sender: UIButton)
+    {
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
     }
-    @IBAction func UseExisting(_ sender: UIButton) { // When use existing button is pressed
-    picker.allowsEditing = false
-    picker.sourceType = .photoLibrary
-    present(picker, animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    // Image picker controller stuff
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
         tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         dismiss(animated:true, completion: nil)
         self.performSegue(withIdentifier: "DisplayImage", sender: nil)
-        
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
+    // If cancel button is pressed dismiss picker
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){ dismiss(animated: true, completion: nil) }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DisplayImage"{
-        let controller = segue.destination as! ImageDisplayViewController
-            controller.image = tempImage!
+    // Prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "DisplayImage"
+        {
+            let controller = segue.destination as! ImageDisplayViewController
+            controller.image = tempImage! // Send image to ImageDisplayViewController
         }
     }
     
-    override func viewDidLoad() {
-    super.viewDidLoad()
-    picker.delegate = self
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        picker.delegate = self
     }
-    }
+}
